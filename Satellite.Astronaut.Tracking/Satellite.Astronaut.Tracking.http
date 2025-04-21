@@ -1,0 +1,6 @@
+@Satellite.Astronaut.Tracking_HostAddress = http://localhost:5067
+
+GET {{Satellite.Astronaut.Tracking_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
