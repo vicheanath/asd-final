@@ -19,7 +19,7 @@ public class AstronautsController : ControllerBase
     public async Task<ActionResult<AstronautDto>> CreateAstronaut(AstronautCreateDto dto)
     {
         var astronaut = await _astronautService.CreateAstronautAsync(dto);
-        return CreatedAtAction("GetAstronaut", new { id = astronaut.Id }, astronaut);
+        return Ok(astronaut);
     }
 
     [HttpGet]

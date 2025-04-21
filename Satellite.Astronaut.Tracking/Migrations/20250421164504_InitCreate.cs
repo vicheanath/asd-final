@@ -18,7 +18,8 @@ namespace Satellite.Astronaut.Tracking.Migrations
                 name: "Astronauts",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FirstName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     ExperienceYears = table.Column<int>(type: "integer", nullable: false)
@@ -73,9 +74,9 @@ namespace Satellite.Astronaut.Tracking.Migrations
                 columns: new[] { "Id", "ExperienceYears", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { -3L, 15, "Chris", "Hadfield" },
-                    { -2L, 8, "Sally", "Ride" },
-                    { -1L, 12, "Neil", "Armstrong" }
+                    { 1L, 12, "Neil", "Armstrong" },
+                    { 2L, 8, "Sally", "Ride" },
+                    { 3L, 15, "Chris", "Hadfield" }
                 });
 
             migrationBuilder.InsertData(
@@ -83,9 +84,9 @@ namespace Satellite.Astronaut.Tracking.Migrations
                 columns: new[] { "Id", "Decommissioned", "LaunchDate", "Name", "OrbitType" },
                 values: new object[,]
                 {
-                    { 1L, false, new DateTime(1990, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hubble", "LEO" },
-                    { 2L, false, new DateTime(2023, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Starlink-17", "MEO" },
-                    { 3L, false, new DateTime(2020, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sentinel-6", "LEO" }
+                    { 1L, false, new DateTime(1990, 4, 24, 5, 0, 0, 0, DateTimeKind.Utc), "Hubble", "LEO" },
+                    { 2L, false, new DateTime(2023, 8, 14, 5, 0, 0, 0, DateTimeKind.Utc), "Starlink-17", "MEO" },
+                    { 3L, false, new DateTime(2020, 11, 21, 6, 0, 0, 0, DateTimeKind.Utc), "Sentinel-6", "LEO" }
                 });
 
             migrationBuilder.InsertData(
@@ -93,9 +94,9 @@ namespace Satellite.Astronaut.Tracking.Migrations
                 columns: new[] { "AstronautId", "SatelliteId" },
                 values: new object[,]
                 {
-                    { -3L, 3L },
-                    { -2L, 2L },
-                    { -1L, 1L }
+                    { 1L, 1L },
+                    { 2L, 2L },
+                    { 3L, 3L }
                 });
 
             migrationBuilder.CreateIndex(

@@ -50,10 +50,11 @@ public class AstronautService : IAstronautService
 
     public async Task<IEnumerable<AstronautDto>> GetAllAstronautsAsync(string sort, string order)
     {
-        var query = _astronautRepository
-            .GetAllIncluding(a => a.AstronautSatellites, a => a.AstronautSatellites.Select(x => x.Satellite))
-            .AsQueryable();
-        
+        var query = await _astronautRepository
+            .GetAllIncludingAsync(a => a.AstronautSatellites);
+
+        query = query.Include(a => a.AstronautSatellites)
+                     .ThenInclude(asat => asat.Satellite);
 
         query = (sort.ToLower(), order.ToLower()) switch
         {

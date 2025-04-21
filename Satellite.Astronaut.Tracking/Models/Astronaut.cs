@@ -6,7 +6,6 @@ namespace Satellite.Astronaut.Tracking.Models;
 public class Astronaut
 {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public long Id { get; set; }
 
     [Required]

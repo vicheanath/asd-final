@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Satellite.Astronaut.Tracking;
 using Satellite.Astronaut.Tracking.Data;
+using Satellite.Astronaut.Tracking.Filters;
 using Satellite.Astronaut.Tracking.Repository;
 using Satellite.Astronaut.Tracking.Services;
 using Scalar.AspNetCore;
@@ -10,10 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => { options.Filters.Add<ApiExceptionFilter>(); }
+);
 
 // Add DbContext to the container.
-builder.Services.AddDbContext<AppDbContext>(options =>{
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     options.UseNpgsql(connectionString);
 });
@@ -39,4 +42,3 @@ app.UseRouting(); // Ensure routing middleware is adde
 
 app.MapControllers(); // Map controllers to endpoints
 app.Run();
-

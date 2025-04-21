@@ -25,7 +25,10 @@ namespace Satellite.Astronaut.Tracking.Migrations
             modelBuilder.Entity("Satellite.Astronaut.Tracking.Models.Astronaut", b =>
                 {
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("ExperienceYears")
                         .HasColumnType("integer");
@@ -47,21 +50,21 @@ namespace Satellite.Astronaut.Tracking.Migrations
                     b.HasData(
                         new
                         {
-                            Id = -1L,
+                            Id = 1L,
                             ExperienceYears = 12,
                             FirstName = "Neil",
                             LastName = "Armstrong"
                         },
                         new
                         {
-                            Id = -2L,
+                            Id = 2L,
                             ExperienceYears = 8,
                             FirstName = "Sally",
                             LastName = "Ride"
                         },
                         new
                         {
-                            Id = -3L,
+                            Id = 3L,
                             ExperienceYears = 15,
                             FirstName = "Chris",
                             LastName = "Hadfield"
@@ -85,17 +88,17 @@ namespace Satellite.Astronaut.Tracking.Migrations
                     b.HasData(
                         new
                         {
-                            AstronautId = -1L,
+                            AstronautId = 1L,
                             SatelliteId = 1L
                         },
                         new
                         {
-                            AstronautId = -2L,
+                            AstronautId = 2L,
                             SatelliteId = 2L
                         },
                         new
                         {
-                            AstronautId = -3L,
+                            AstronautId = 3L,
                             SatelliteId = 3L
                         });
                 });
@@ -132,7 +135,7 @@ namespace Satellite.Astronaut.Tracking.Migrations
                         {
                             Id = 1L,
                             Decommissioned = false,
-                            LaunchDate = new DateTime(1990, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LaunchDate = new DateTime(1990, 4, 24, 5, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Hubble",
                             OrbitType = "LEO"
                         },
@@ -140,7 +143,7 @@ namespace Satellite.Astronaut.Tracking.Migrations
                         {
                             Id = 2L,
                             Decommissioned = false,
-                            LaunchDate = new DateTime(2023, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LaunchDate = new DateTime(2023, 8, 14, 5, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Starlink-17",
                             OrbitType = "MEO"
                         },
@@ -148,7 +151,7 @@ namespace Satellite.Astronaut.Tracking.Migrations
                         {
                             Id = 3L,
                             Decommissioned = false,
-                            LaunchDate = new DateTime(2020, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LaunchDate = new DateTime(2020, 11, 21, 6, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Sentinel-6",
                             OrbitType = "LEO"
                         });
